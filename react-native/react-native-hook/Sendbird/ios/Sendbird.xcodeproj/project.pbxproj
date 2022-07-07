@@ -545,7 +545,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Sendbird/Sendbird.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KYQMH964L9;
+				DEVELOPMENT_TEAM = 5UT64Z4SLQ;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Sendbird/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -557,7 +557,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.chat.reactnative.sample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mindsea.elightf.sendbird.chat.reactnative.sample;
 				PRODUCT_NAME = Sendbird;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -573,6 +573,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Sendbird/Sendbird.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5UT64Z4SLQ;
 				INFOPLIST_FILE = Sendbird/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -583,7 +584,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.chat.reactnative.sample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mindsea.elightf.sendbird.chat.reactnative.sample;
 				PRODUCT_NAME = Sendbird;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

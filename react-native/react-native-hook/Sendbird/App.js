@@ -19,7 +19,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createNativeStackNavigator();
 
-const appId = '28EB1FAD-F63A-4B20-A59F-A95D746B6D75';
+const appId = 'CCD87E42-6D41-409C-A79A-C48F7AD4C7D3';
 const sendbird = new SendBird({ appId });
 
 const initialState = {

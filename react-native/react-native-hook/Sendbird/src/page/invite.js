@@ -174,6 +174,13 @@ const Invite = props => {
     }
   };
   const onSelect = user => {
+    if (isForCall) {
+      // Direct calls only ATM
+      if (state.selectedUsers.length > 0) {
+        dispatch({ type: 'unselect-user', payload: { user: state.selectedUsers[0] }})
+        dispatch({ type: 'select-user', payload: { user } });  
+      }
+    }
     if (!state.selectedUsers.includes(user)) {
       dispatch({ type: 'select-user', payload: { user } });
     } else {

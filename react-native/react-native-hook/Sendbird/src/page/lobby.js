@@ -90,6 +90,11 @@ const Lobby = props => {
       navigation.navigate('Invite', { currentUser });
     }
   };
+  const startCall = () => {
+    if (currentUser) {
+      navigation.navigate('Invite', { currentUser, isForCall: true });
+    }
+  };
   const profile = () => {
     if (currentUser) {
       navigation.navigate('Profile', { currentUser });

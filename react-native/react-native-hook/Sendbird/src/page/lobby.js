@@ -29,6 +29,9 @@ const Lobby = props => {
         <TouchableOpacity activeOpacity={0.85} style={style.profileButton} onPress={startChat}>
           <Icon name="chat" color="#fff" size={28} />
         </TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.85} style={style.profileButton} onPress={startCall}>
+          <Icon name="call" color="#fff" size={28} />
+        </TouchableOpacity>
       </View>
     ) : null;
 

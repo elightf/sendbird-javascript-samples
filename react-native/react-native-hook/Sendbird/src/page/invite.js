@@ -18,7 +18,7 @@ import User from '../component/user';
 
 const Invite = props => {
   const { route, navigation, sendbird } = props;
-  const { currentUser, channel } = route.params;
+  const { currentUser, channel, isForCall } = route.params;
 
   const [query, setQuery] = useState(null);
   const [state, dispatch] = useReducer(inviteReducer, {
@@ -113,32 +113,44 @@ const Invite = props => {
       sendbird.setBackgroundState();
     }
   };
+  
   const invite = async () => {
     if (state.selectedUsers.length > 0) {
       dispatch({ type: 'start-loading' });
-      try {
-        if (!channel) {
-          const params = new sendbird.GroupChannelParams();
-          params.addUsers(state.selectedUsers);
-          const createdChannel = await sendbird.GroupChannel.createChannel(params);
+      if (!isForCall) {
+        // Navigate to chat
+        try {
+          if (!channel) {
+            const params = new sendbird.GroupChannelParams();
+            params.addUsers(state.selectedUsers);
+            const createdChannel = await sendbird.GroupChannel.createChannel(params);
 
-          dispatch({ type: 'end-loading' });
-          navigation.dispatch(
-            StackActions.replace('Chat', {
-              currentUser,
-              channel: createdChannel,
-            }),
-          );
-        } else {
-          await channel.invite(state.selectedUsers);
-          dispatch({ type: 'end-loading' });
-          navigation.goBack();
+            dispatch({ type: 'end-loading' });
+            navigation.dispatch(
+              StackActions.replace('Chat', {
+                currentUser,
+                channel: createdChannel,
+              }),
+            );
+          } else {
+            await channel.invite(state.selectedUsers);
+            dispatch({ type: 'end-loading' });
+            navigation.goBack();
+          }
+        } catch (err) {
+          dispatch({
+            type: 'error',
+            payload: { error: err.message },
+          });
         }
-      } catch (err) {
-        dispatch({
-          type: 'error',
-          payload: { error: err.message },
-        });
+      } else {
+        // Navigate to call
+        navigation.dispatch(
+          StackActions.replace('Call', {
+            currentUser,
+            calleeId: state.selectedUsers[0],
+          }),
+        );
       }
     } else {
       dispatch({
@@ -147,10 +159,12 @@ const Invite = props => {
       });
     }
   };
+  
   const refresh = () => {
     setQuery(sendbird.createApplicationUserListQuery());
     dispatch({ type: 'refresh' });
   };
+
   const next = () => {
     if (query.hasNext) {
       dispatch({ type: 'start-loading' });
@@ -173,6 +187,7 @@ const Invite = props => {
       });
     }
   };
+
   const onSelect = user => {
     if (isForCall) {
       // Direct calls only ATM

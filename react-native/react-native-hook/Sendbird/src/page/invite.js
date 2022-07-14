@@ -7,6 +7,7 @@ import {
   FlatList,
   RefreshControl,
   TouchableOpacity,
+  Switch,
   AppState,
 } from 'react-native';
 import { StackActions } from '@react-navigation/native';
@@ -15,12 +16,14 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { withAppContext } from '../context';
 import { inviteReducer } from '../reducer/invite';
 import User from '../component/user';
+import { setEnabled } from 'react-native/Libraries/Performance/Systrace';
 
 const Invite = props => {
   const { route, navigation, sendbird } = props;
   const { currentUser, channel, isForCall } = route.params;
 
   const [query, setQuery] = useState(null);
+  const [callee, setCallee] = useState('elight')
   const [state, dispatch] = useReducer(inviteReducer, {
     channel,
     users: [],
@@ -115,9 +118,9 @@ const Invite = props => {
   };
   
   const invite = async () => {
-    if (state.selectedUsers.length > 0) {
-      dispatch({ type: 'start-loading' });
-      if (!isForCall) {
+    if (!isForCall) {
+      if (state.selectedUsers.length > 0) {
+        dispatch({ type: 'start-loading' });
         // Navigate to chat
         try {
           if (!channel) {
@@ -144,19 +147,18 @@ const Invite = props => {
           });
         }
       } else {
-        // Navigate to call
-        navigation.dispatch(
-          StackActions.replace('Call', {
-            currentUser,
-            calleeId: state.selectedUsers[0],
-          }),
-        );
+        dispatch({
+          type: 'error',
+          payload: { error: 'Select at least 1 user to invite.' },
+        });
       }
     } else {
-      dispatch({
-        type: 'error',
-        payload: { error: 'Select at least 1 user to invite.' },
-      });
+      // Navigate to call
+      navigation.dispatch(
+        StackActions.replace('Video', {
+          identity: callee,
+        }),
+      );
     }
   };
   
@@ -203,36 +205,60 @@ const Invite = props => {
     }
   };
 
+  const [isEnabled, setIsEnabled] = useState(false)
+  const toggleSwitch = () => setIsEnabled(prevState => {
+    if (!prevState) {
+      setCallee('thomas')
+    } else {
+      setCallee('elight')
+    }
+    return !prevState
+  })
+
   return (
     <>
       <StatusBar backgroundColor="#742ddd" barStyle="light-content" />
       <SafeAreaView style={style.container}>
-        <FlatList
-          data={state.users}
-          renderItem={({ item }) => (
-            <User
-              key={item.userId}
-              user={item}
-              selected={state.selectedUsers.includes(item)}
-              selectable={true}
-              onSelect={onSelect}
+        { !isForCall 
+        ? ( 
+          <FlatList
+            data={state.users}
+            renderItem={({ item }) => (
+              <User
+                key={item.userId}
+                user={item}
+                selected={state.selectedUsers.includes(item)}
+                selectable={true}
+                onSelect={onSelect}
+              />
+            )}
+            keyExtractor={item => item.userId}
+            refreshControl={
+              <RefreshControl refreshing={state.loading} colors={['#742ddd']} tintColor={'#742ddd'} onRefresh={refresh} />
+            }
+            contentContainerStyle={{ flexGrow: 1 }}
+            ListHeaderComponent={
+              state.error && (
+                <View style={style.errorContainer}>
+                  <Text style={style.error}>{state.error}</Text>
+                </View>
+              )
+            }
+            onEndReached={() => next()}
+            onEndReachedThreshold={0.5}
+          />
+        )
+        : (
+          <View style={style.switch}>
+            <Text>Who are you calling? Hint: It can't be you</Text>
+            <Switch 
+              onValueChange={toggleSwitch}
+              value={isEnabled}
             />
-          )}
-          keyExtractor={item => item.userId}
-          refreshControl={
-            <RefreshControl refreshing={state.loading} colors={['#742ddd']} tintColor={'#742ddd'} onRefresh={refresh} />
-          }
-          contentContainerStyle={{ flexGrow: 1 }}
-          ListHeaderComponent={
-            state.error && (
-              <View style={style.errorContainer}>
-                <Text style={style.error}>{state.error}</Text>
-              </View>
-            )
-          }
-          onEndReached={() => next()}
-          onEndReachedThreshold={0.5}
-        />
+            <Text>{callee}</Text>
+          </View>
+        )
+      }
       </SafeAreaView>
     </>
   );
@@ -241,6 +267,10 @@ const Invite = props => {
 const style = {
   container: {
     flex: 1,
+  },
+  switch: {
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   inviteButton: {
     marginRight: 12,

@@ -5,9 +5,24 @@ import { channelsReducer } from '../reducer/channels';
 import Channel from '../component/channel';
 import { handleNotificationAction } from '../utils';
 
+import auth from "@react-native-firebase/auth"
+import { firebase } from "@react-native-firebase/app";
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDDNgjGphGknD9JauOxH7KRYODXLilHiUQ",
+  authDomain: "sendbird-poc.firebaseapp.com",
+  projectId: "sendbird-poc",
+  storageBucket: "sendbird-poc.appspot.com",
+  messagingSenderId: "111477842269",
+  appId: "1:111477842269:web:c43a0a0b9b8d5d8db2c8b4"
+};
+
+let app;
+
 const Channels = props => {
   const { route, navigation, sendbird, currentUser } = props;
   const [query, setQuery] = useState(null);
+  const [didInit, setDidInit] = useState(false)
   const [state, dispatch] = useReducer(channelsReducer, {
     sendbird,
     currentUser,
@@ -17,6 +32,29 @@ const Channels = props => {
     empty: '',
     error: null,
   });
+
+  useEffect(() => {
+    // Initialize Firebase
+    if (!firebase.apps.length) {
+      app = firebase.initializeApp(firebaseConfig);
+      setDidInit(true)
+    }
+  }, [])
+  
+  useEffect(() => {
+    const signIn = async () => {
+      try {
+        const aut = auth(app)
+        await auth().signInAnonymously()
+        console.log("AUTH: SIGNED IN")
+      } catch (err) {
+        console.log('SIGN IN ERROR:', err)
+      }
+    }
+
+    signIn()
+
+  }, [didInit])
 
   // on state change
   useEffect(() => {

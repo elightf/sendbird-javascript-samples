@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* SendbirdTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SendbirdTests.m */; };
+		10100904287E083A00B4EC79 /* ZoomVideoSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10100903287E083A00B4EC79 /* ZoomVideoSDK.xcframework */; };
+		10100905287E083A00B4EC79 /* ZoomVideoSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 10100903287E083A00B4EC79 /* ZoomVideoSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		10850F532880ACC400C75860 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10850F522880ACC400C75860 /* GoogleService-Info.plist */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		D85519AD5C3C6F1951B89F63 /* libPods-Sendbird-SendbirdTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9974B19EC8AF8B89A72196 /* libPods-Sendbird-SendbirdTests.a */; };
 		EA203C42C40890AD1194329C /* libPods-Sendbird.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE798596B25ACC4C8603172 /* libPods-Sendbird.a */; };
-		ED17F4E7279F914B004ACC18 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED17F4E6279F914B004ACC18 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,10 +29,26 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		10100906287E083A00B4EC79 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				10100905287E083A00B4EC79 /* ZoomVideoSDK.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		00E356EE1AD99517003FC87E /* SendbirdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SendbirdTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* SendbirdTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SendbirdTests.m; sourceTree = "<group>"; };
+		10100903287E083A00B4EC79 /* ZoomVideoSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ZoomVideoSDK.xcframework; path = "../../../../../../../../Downloads/zoom-video-sdk-iOS-1.3.2/Sample-Libs/lib/ZoomVideoSDK.xcframework"; sourceTree = "<group>"; };
+		10850F522880ACC400C75860 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		122F30E1DD8D0E0715E070E3 /* Pods-Sendbird.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sendbird.debug.xcconfig"; path = "Target Support Files/Pods-Sendbird/Pods-Sendbird.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Sendbird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sendbird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Sendbird/AppDelegate.h; sourceTree = "<group>"; };
@@ -58,7 +76,6 @@
 		C6DE316669CE4F95A85DAC08 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		CF9A6CC480F94179883893C7 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		ED17F4E5279F90EE004ACC18 /* Sendbird.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Sendbird.entitlements; path = Sendbird/Sendbird.entitlements; sourceTree = "<group>"; };
-		ED17F4E6279F914B004ACC18 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F20C9A6F7D294EE7A53A7C82 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		F4EC06B39C404FCB9215210A /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
@@ -79,6 +96,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA203C42C40890AD1194329C /* libPods-Sendbird.a in Frameworks */,
+				10100904287E083A00B4EC79 /* ZoomVideoSDK.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,8 +129,8 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
-				ED17F4E6279F914B004ACC18 /* GoogleService-Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				10850F522880ACC400C75860 /* GoogleService-Info.plist */,
 			);
 			name = Sendbird;
 			sourceTree = "<group>";
@@ -120,6 +138,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				10100903287E083A00B4EC79 /* ZoomVideoSDK.xcframework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				9EE798596B25ACC4C8603172 /* libPods-Sendbird.a */,
 				BE9974B19EC8AF8B89A72196 /* libPods-Sendbird-SendbirdTests.a */,
@@ -230,6 +249,7 @@
 				CC616806AC51BF786C345396 /* [CP] Embed Pods Frameworks */,
 				7751B7228745CCFC0DB0A4AA /* [CP] Copy Pods Resources */,
 				6053CC8A2B976184010EE079 /* [CP-User] [RNFB] Core Configuration */,
+				10100906287E083A00B4EC79 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -289,8 +309,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				10850F532880ACC400C75860 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				ED17F4E7279F914B004ACC18 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

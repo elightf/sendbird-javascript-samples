@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 import SendBird from 'sendbird';
 
@@ -10,6 +10,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Lobby from './src/page/lobby';
 import Chat from './src/page/chat';
+import Video from './src/page/video'
 import Member from './src/page/member';
 import Invite from './src/page/invite';
 import Profile from './src/page/profile';
@@ -69,17 +70,23 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <AppContext.Provider value={initialState}>
-        <Stack.Navigator>
-          <Stack.Screen name="Lobby" component={Lobby} options={{ ...defaultHeaderOptions }} />
-          <Stack.Screen name="Chat" component={Chat} options={{ ...defaultHeaderOptions }} />
-          <Stack.Screen name="Member" component={Member} options={{ ...defaultHeaderOptions }} />
-          <Stack.Screen name="Invite" component={Invite} options={{ ...defaultHeaderOptions }} />
-          <Stack.Screen name="Profile" component={Profile} options={{ ...defaultHeaderOptions }} />
-        </Stack.Navigator>
-      </AppContext.Provider>
+        <AppContext.Provider value={initialState}>
+          <Stack.Navigator>
+            <Stack.Screen name="Lobby" component={Lobby} options={{ ...defaultHeaderOptions }} />
+            <Stack.Screen name="Chat" component={Chat} options={{ ...defaultHeaderOptions }} />
+            <Stack.Screen name="Video" component={Video} options={{ ...defaultHeaderOptions }} />
+            <Stack.Screen name="Member" component={Member} options={{ ...defaultHeaderOptions }} />
+            <Stack.Screen name="Invite" component={Invite} options={{ ...defaultHeaderOptions }} />
+            <Stack.Screen name="Profile" component={Profile} options={{ ...defaultHeaderOptions }} />
+          </Stack.Navigator>
+        </AppContext.Provider>
     </NavigationContainer>
   );
 };
 
 export default App;
+
+export const USER_A_IDENTITY = "elight"
+export const USER_A_SID = "USf12f042d39a545adbc19fd81619ef3dd"
+export const USER_B_IDENTITY = "thomas"
+export const USER_B_SID = "US72ed81ef6f72420d8ac5e0bc26d80949"
